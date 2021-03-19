@@ -1,0 +1,19 @@
+{
+  "name": "orm-sequelize",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bilpeixoto/orm-sequelize.git"
+  },
+  "author": "bilpeixoto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bilpeixoto/orm-sequelize/issues"
+  },
+  "homepage": "https://github.com/bilpeixoto/orm-sequelize#readme"
+}
