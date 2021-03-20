@@ -1,0 +1,42 @@
+• Montando o ambiente de desenvolvimento
+
+    Criar uma pasta: mkdir
+    Iniciar um projeto node: node init (-y ignora as informações iniciais e cria direto)
+    Iniciar um repositório git:
+        git init
+        git commit -m "first commit"
+        crie o arquivo .gitignore e adicione node_modules
+        git branch -M main
+        git remote add origin https://exemplo
+        git push -u origin main
+
+    Instalando bibliotecas: 
+        npm install express bodyparser mysql2 sequelize sequelize-cli path
+        npm install --save-dev nodemon
+
+    Adicionar o script: "start": "nodemon ./api/index.js"
+
+• Subindo o template padrão do Sequelize
+    npx sequelize-cli init
+
+• Mover as pastar criadas pelo sequelize para dentro de /api e criar na raiz um arquivo .sequelizerc
+para estruturar a hierarquia de pastas diferentes do sequelize e colar: 
+
+    const path = require('path');
+
+    module.exports = {
+    'config': path.resolve('config', './api/config.json'),
+    'models-path': path.resolve('./api/models'),
+    'seeders-path': path.resolve('./api/seeders'),
+    'migrations-path': path.resolve('./api/migrations')
+    }
+
+Corrigindo todos os caminhos para os corretos
+
+• Criando banco de dados
+
+    No terminal digitar: mysql -u root -p   digitar senha
+    create database 'nome_do_banco';       (sempre ponto e vírgula depois dos comandos)
+    show databases;
+ 
+• Preencher o arquivo de config do Sequelize de acordo com o BD criado
