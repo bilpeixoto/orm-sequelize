@@ -1,8 +1,8 @@
-• Montando o ambiente de desenvolvimento
+1. Montando o ambiente de desenvolvimento
 
-    Criar uma pasta: mkdir
-    Iniciar um projeto node: node init (-y ignora as informações iniciais e cria direto)
-    Iniciar um repositório git:
+    • Criar uma pasta: mkdir
+    • Iniciar um projeto node: node init (-y ignora as informações iniciais e cria direto)
+    • Iniciar um repositório git:
         git init
         git commit -m "first commit"
         crie o arquivo .gitignore e adicione node_modules
@@ -10,33 +10,67 @@
         git remote add origin https://exemplo
         git push -u origin main
 
-    Instalando bibliotecas: 
+   • Instalando bibliotecas: 
         npm install express bodyparser mysql2 sequelize sequelize-cli path
         npm install --save-dev nodemon
 
-    Adicionar o script: "start": "nodemon ./api/index.js"
+    • Adicionar o script: "start": "nodemon ./api/index.js"
 
-• Subindo o template padrão do Sequelize
+2.  Subindo o template padrão do Sequelize
     npx sequelize-cli init
 
-• Mover as pastar criadas pelo sequelize para dentro de /api e criar na raiz um arquivo .sequelizerc
+3.  Mover as pastar criadas pelo sequelize para dentro de /api e criar na raiz um arquivo .sequelizerc
 para estruturar a hierarquia de pastas diferentes do sequelize e colar: 
 
     const path = require('path');
 
     module.exports = {
-    'config': path.resolve('config', './api/config.json'),
-    'models-path': path.resolve('./api/models'),
-    'seeders-path': path.resolve('./api/seeders'),
-    'migrations-path': path.resolve('./api/migrations')
+        'config': path.resolve('./api/config/config.json'),
+        'models-path': path.resolve('./api/models'),
+        'seeders-path': path.resolve('./api/seeders'),
+        'migrations-path': path.resolve('./api/migrations')
     }
 
-Corrigindo todos os caminhos para os corretos
+    • Corrigir todos os caminhos para os corretos
 
-• Criando banco de dados
+4. Criando banco de dados
 
-    No terminal digitar: mysql -u root -p   digitar senha
-    create database 'nome_do_banco';       (sempre ponto e vírgula depois dos comandos)
-    show databases;
+    • No terminal digitar: mysql -u root -p   digitar senha
+    • create database 'nome_do_banco';       (sempre ponto e vírgula depois dos comandos)
+    • show databases;
  
-• Preencher o arquivo de config do Sequelize de acordo com o BD criado
+5. Preencher o arquivo de config do Sequelize de acordo com o BD criado
+
+6. Criando modelos:
+    • npx sequelize cli model:create --name 'nomeDaTabela' --attributes 'nomeDoAtributo':'TipoDoAtributo','nomeDoAtributo':'TipoDoAtributo'...
+
+    EXEMPLO:
+    • npx sequelize cli model:create --name Pessoas --attributes nome:string,ativo:boolean,email:string,role:string
+
+7. Realizando migração (sincronizar os modelos criados pelo sequelize com o banco):
+    • npx sequelize-cli db:migrate
+
+    •Para desfazer uma migração e voltar o banco para o estado anterior(cada migração gera um arquivo com data e hora na pasta ./migrations
+    então se necessário é possível realizar várias vezes o comando):
+        • npx sequelize-cli db:migrate:undo
+
+8. Verificando as alterações no banco:
+    • mysql -u root -p   digitar senha
+    • use escola_ingles;
+    • show tables;
+    • describe Pessoas;
+
+9. Populando banco no terminal:
+    • insert into pessoas (nome, ativo, email, role, createdAt, updatedAt) values ("Carla Gomes", 1, "carla@carla.com", "estudante", NOW(), NOW())
+
+10. Verificando a tabela pessoas diretamente no terminal:
+    • select * from pessoas;
+
+11. Trabalhando com seeds no sequelize:
+    • Criando seed:
+        • npx sequelize-cli seed:generate --name demo-pessoa
+    • Preencher o(s) arquivo(s) de seed
+    • Rodando o comando para sincronizar as seeds com o banco:
+        • npx sequelize-cli db:seed:all
+    • Desfazendo uma seed:
+        npx sequelize-cle db:seed:undo
