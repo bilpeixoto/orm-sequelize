@@ -1,12 +1,12 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
 		return queryInterface.bulkInsert('Matriculas', [
-			{
-				status: "confirmado",
-				id_aluno: 1,
-				id_turma: 1,
-				createdAt: new Date(),
-				updatedAt: new Date()
+		{
+			status: "confirmado",
+			id_aluno: 1,
+			id_turma: 1,
+			createdAt: new Date(),
+			updatedAt: new Date()
 		},
 		{
 			status: "confirmado",
